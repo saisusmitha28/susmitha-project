@@ -5,7 +5,9 @@ import { AppComponent } from './app.component';
 import { AuthenticationLayoutComponent } from './Layout/authentication-layout/authentication-layout.component';
 import { AdminLayoutComponent } from './Layout/admin-layout/admin-layout.component';
 import { SharedModule } from './shared/shared.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './interceptors/token.interceptor';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +20,11 @@ import { HttpClientModule } from '@angular/common/http';
     SharedModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
