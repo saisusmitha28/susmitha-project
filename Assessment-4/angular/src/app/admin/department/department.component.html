@@ -1,1 +1,24 @@
 <p>department works!</p>
+
+
+<h2>Department List</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Dept.Id</th>
+            <th>Dept.Name</th>
+            <th>Dept.Location</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dept of departments">
+            <td>{{dept.deptId}}</td>
+            <td>{{dept.deptName}}</td>
+            <td>{{dept.deptLocation}}</td>
+            <td>
+                <a [routerLink]="['../employee']" [queryParams]="{deptId:dept.deptId}">View Employees</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

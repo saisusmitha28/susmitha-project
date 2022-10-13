@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -11,7 +11,7 @@ import { ILogin } from './login-model';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   loginObj = {} as ILogin;
   subscription!: Subscription;
   returnUrl!: string | null;
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
           if (this.returnUrl)
             this.router.navigate([this.returnUrl]);
           else
-            this.router.navigate(["/admin/employee"]);
+            this.router.navigate(["/admin/dashboard"]);
         }
         else {
           console.log(data.message);
